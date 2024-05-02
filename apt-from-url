@@ -1,0 +1,25 @@
+#!/bin/bash
+
+help() {
+  echo "\
+apt-from-url 0.0.1
+usage: apt-from-url command-of-apt URL-of-a-deb-file [options]
+
+apt-from-url is a apt wrapper that can install deb files specified by URL
+
+A example: sudo apt-from-url install "https://example.com/package.deb"
+  "
+}
+
+if [ $# -lt 2 ];then
+  help
+  exit 0
+fi
+TEMP_FNAME="$(mktemp).deb"
+curl -L "$2" > "$TEMP_FNAME"
+if [ $# -ge 3 ];then
+    apt $1 -f "$TEMP_FNAME" ${@:3:($# - 3)}
+else
+    apt $1 -f "$TEMP_FNAME"
+fi
+rm -f "$TEMP_FNAME"
