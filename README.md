@@ -11,6 +11,8 @@ URLで指定したdebファイルをインストールできる、aptラッパ�
 ## ⬇️ インストール
 ```bash
 sudo curl -L "https://raw.githubusercontent.com/PenguinCabinet/apt-from-url/main/apt-from-url" | sudo tee /usr/local/bin/apt-from-url 
+```
+```bash
 sudo chmod +x /usr/local/bin/apt-from-url
 ```
 
